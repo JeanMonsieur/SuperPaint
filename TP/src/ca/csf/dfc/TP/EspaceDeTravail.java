@@ -28,9 +28,9 @@ import javax.swing.JToolBar;
  */
 public class EspaceDeTravail extends JFrame{
 
-	private Button btnCouleur = new Button("Couleur");
-	private Button btnEpaisseurDuTrait = new Button("Trait");
-	private Button btnCouleurRemplissage = new Button("Remplissage");
+	private JButton btnCouleur = new JButton();
+	private JButton btnEpaisseurDuTrait = new JButton();
+	private JButton btnCouleurRemplissage = new JButton();
 	private JButton btnLigne = new JButton();
 	private JButton btnRectangle = new JButton();
 	private JButton btnEllipse = new JButton();
@@ -53,7 +53,6 @@ public class EspaceDeTravail extends JFrame{
 		PersonnaliserPlancheADessins();
 		AjouterBarreProprietes();
 		JPanel panneauHaut = AjouterMenuPrincipal();
-		AjouterIconesAuxBouttons();
 		AjouterBarreDOutilsFormes(panneauHaut);
 		
 		
@@ -72,7 +71,9 @@ public class EspaceDeTravail extends JFrame{
 		
 		panneauGauche.setLayout(new GridLayout(3,1));
 		panneauGauche.add(barreProprietes);
-		this.add(panneauGauche,BorderLayout.WEST);	
+		this.add(panneauGauche,BorderLayout.WEST);
+		
+		AjouterIconesALaBarreProprietes();
 	}
 	private JPanel AjouterMenuPrincipal() {
 		
@@ -102,7 +103,7 @@ public class EspaceDeTravail extends JFrame{
 		return panneauHaut;
 	}
 	
-	private void AjouterIconesAuxBouttons() {
+	private void AjouterIconesAuxBouttonsDesFormes() {
 		
 		Image imageLigne = new ImageIcon("src/img/ligne.png").getImage().getScaledInstance(20, 20, Image.SCALE_DEFAULT);
 		ImageIcon iconLigne = new ImageIcon(imageLigne);
@@ -134,6 +135,7 @@ public class EspaceDeTravail extends JFrame{
 		barreOutilsFormes.add(this.btnEllipse);
 		barreOutilsFormes.addSeparator();
 		
+		AjouterIconesAuxBouttonsDesFormes();
 		p_JPanel.add(barreOutilsFormes);
 		this.add(p_JPanel,BorderLayout.NORTH);
 		
@@ -142,6 +144,25 @@ public class EspaceDeTravail extends JFrame{
 		this.lblEspaceDeDessin.setBackground(Color.white);
 		this.lblEspaceDeDessin.setOpaque(true);
 		this.add(this.lblEspaceDeDessin,BorderLayout.CENTER);
+	}
+	
+	private void AjouterIconesALaBarreProprietes() {
+		
+		Image imagePaletteCouleurs = new ImageIcon("src/img/paletteCouleurs.png").getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT);
+		ImageIcon iconPaletteCouleurs = new ImageIcon(imagePaletteCouleurs);
+		this.btnCouleur.setIcon(iconPaletteCouleurs);
+		this.btnCouleur.setToolTipText("Choisir une couleur");
+		
+		Image imageEpaisseurTrait = new ImageIcon("src/img/epaisseur.png").getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT);
+		ImageIcon iconEpaisseurTrait = new ImageIcon(imageEpaisseurTrait);
+		this.btnEpaisseurDuTrait.setIcon(iconEpaisseurTrait);
+		this.btnEpaisseurDuTrait.setToolTipText("Choisir une épaisseur de trait");
+		
+		Image imageCouleurRemplissage = new ImageIcon("src/img/remplir.png").getImage().getScaledInstance(25, 25, Image.SCALE_DEFAULT);
+		ImageIcon iconCouleurRemplissage = new ImageIcon(imageCouleurRemplissage);
+		this.btnCouleurRemplissage.setIcon(iconCouleurRemplissage);
+		this.btnCouleurRemplissage.setToolTipText("Choisir une couleur de remplissage");
+		
 	}
 	
 }
