@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.Icon;
@@ -19,6 +21,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToolBar;
 
@@ -54,6 +57,7 @@ public class EspaceDeTravail extends JFrame{
 		AjouterBarreProprietes();
 		JPanel panneauHaut = AjouterMenuPrincipal();
 		AjouterBarreDOutilsFormes(panneauHaut);
+		InstancierLesEvenements();
 		
 		
 		this.setSize(600, 500);
@@ -162,6 +166,29 @@ public class EspaceDeTravail extends JFrame{
 		ImageIcon iconCouleurRemplissage = new ImageIcon(imageCouleurRemplissage);
 		this.btnCouleurRemplissage.setIcon(iconCouleurRemplissage);
 		this.btnCouleurRemplissage.setToolTipText("Choisir une couleur de remplissage");
+		
+	}
+	private void InstancierLesEvenements() {
+		EventQuitter quitter = new EventQuitter();
+		itmQuitter.addActionListener(quitter);
+	}
+	
+	private class EventQuitter implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			int responseConfirmation = Confirmer();
+			if(responseConfirmation == 1) {
+				System.exit(0);	
+			}
+			
+		}
+		
+		private int Confirmer() {
+			int resultat = JOptionPane.showConfirmDialog(null, "Voulez-vous enregistrer les modifications apportées au document?");
+			return resultat;
+		}
+		
 		
 	}
 	
